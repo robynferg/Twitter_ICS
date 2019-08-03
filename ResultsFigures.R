@@ -1,4 +1,4 @@
-## Figures and results for 'Stwitterial Media as an Alternative to Surveys of Opinions about the Economy'
+## Figures and results for 'Social Media as an Alternative to Surveys of Opinions about the Economy'
 
 ########## Functions
 ## Smoothing
