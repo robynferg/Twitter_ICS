@@ -1,5 +1,13 @@
 ## Figures and results for 'Social Media as an Alternative to Surveys of Opinions about the Economy'
 
+## Packages used
+library(xts)
+library(ggplot2)
+library(readr)
+library(GGally)
+library(data.table)
+library(fields)
+
 ########## Functions
 ## Smoothing
 kSmooth = function(data.xts, k){
