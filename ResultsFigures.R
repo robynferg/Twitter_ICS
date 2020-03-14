@@ -7,6 +7,7 @@ library(readr)
 library(GGally)
 library(data.table)
 library(fields)
+library(plotly)
 
 ########## Functions
 ## Smoothing
@@ -315,7 +316,7 @@ for(l in ls){
 }
 
 plot_ly(type='contour', z=kl_sensitivity, x=ls, y=ks, contours=list(showlabels=TRUE), colors=colorRamp(c('white', 'gray30'))) %>%
-  colorbar(title='Correlation') %>% xlabel('')
+  colorbar(title='Correlation')
 plot_ly(type='contour', z=kl_sensitivity, x=ls, y=ks, contours=list(showlabels=TRUE))
 plot_ly(type='heatmap', z=kl_sensitivity, x=ls, y=ks)
 
