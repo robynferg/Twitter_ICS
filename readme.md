@@ -50,13 +50,13 @@ We include various levels of smoothing k for Twitter sentiment, where the smooth
 
 We also include a lag L, indicating whether Twitter sentiment leads or lags consumer confidence by L days.
 
-## Reproducability
+## Reproducibility
 
 The file 'ResultsFigures.R' reproduces results and figures found in the above paper. This script uses the data sets 'allDataSurvey.csv' and 'jobsTwitterData.csv'.
 
 'allDataSurvey.csv' is a csv file containing daily mean survey responses for the five questions making up the ICS.
 
-'jobsTwitterData.csv' is a csv file of "jobs" tweets used in the analysis. Each row is a single tweet, with columns being the date the tweet was sent, the category the tweet was classified into, sentiment as given by Vader and TextBlob, and number of positive and negative words from the OpinionFinder, Liu-Hu, and Lexicoder dictionaries.
+'jobsTwitterData.csv' is a csv file of "jobs" tweets used in the analysis. Because of its size, this csv file is found under Releases. Each row is a single tweet, with columns being the date the tweet was sent, the category the tweet was classified into, sentiment as given by Vader and TextBlob, and number of positive and negative words from the OpinionFinder, Liu-Hu, and Lexicoder dictionaries.
 
 'ResultsFigures.R' requires the following packages to be installed in R: xts, ggplot2, readr, GGally, data.table, fields, plotly.
 
@@ -69,7 +69,7 @@ The shiny app makes use of two data sets: 'allDataSurvey.csv' and 'dailyTwitter.
 
 'dailyTwitter.csv' is a csv file containing the sentiment of tweets for each category of "jobs" tweets, with each row being a single day.
 
-To run the shiny app, save 'allDataSurvey.csv', 'dailyTwitter.csv', and the script from 'app_GitHub.R' (saved as 'app.R') in the same folder. Run 'app.R' in R to display shiny app. The shiny app requires the following packages to be installed in R before running: shiny, xts, lubridate, reshape2, ggplot2, data.table.
+To run the shiny app, save 'allDataSurvey.csv', 'dailyTwitter.csv', and the script from 'app.R' in the same folder. Run 'app.R' in R to display shiny app. The shiny app requires the following packages to be installed in R before running: shiny, xts, lubridate, reshape2, ggplot2, data.table.
 
 With the shiny app we can also track a combination of the above "jobs" tweets categories. For example, if we wanted to completely remove junk/irrelevant tweets from the analysis, we would check all boxes except 'junk' under 'Category Combination'. This shows up as 'combo' in plots and tables. Sentiment of all "jobs" tweets is denoted as 'allSent'.
 
