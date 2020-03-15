@@ -4,7 +4,7 @@ This GitHub contains data and scripts for reproducing results found in "Social M
 
 In this paper we perform a sensitivity analysis on the relationship between consumer confidence and sentiment of tweets containing the word "jobs".
 
-This GitHub repository contains two main R scripts: one for replicating results found in the above mentioned paper, and one for creating a shiny app to see how changing various parameters affects the resulting observed relationships.
+This GitHub repository contains two main R scripts: one for replicating most results found in the above mentioned paper, and one for creating a shiny app to see how changing various parameters affects the resulting observed relationships. All of the results in the paper can be replicated either by using the R script, the Shiny App, or both.
 
 For privacy reasons we do not make tweet text or idenfitying data of tweets publicly available.
 
@@ -52,16 +52,16 @@ We also include a lag L, indicating whether Twitter sentiment leads or lags cons
 
 ## Reproducibility
 
-The file 'ResultsFigures.R' reproduces results and figures found in the above paper. This script uses the data sets 'allDataSurvey.csv' and 'jobsTwitterData.csv'.
+The file 'ResultsFigures.R' reproduces most of the results and figures found in the above paper. This script uses the data sets 'allDataSurvey.csv' and 'jobsTwitterData.csv'. This script replicates Tables 1, 2, 3, and 5, and Figure 2.
 
 'allDataSurvey.csv' is a csv file containing daily mean survey responses for the five questions making up the ICS.
 
 'jobsTwitterData.csv' is a csv file of "jobs" tweets used in the analysis. Because of its size, this csv file is found under Releases. Each row is a single tweet, with columns being the date the tweet was sent, the category the tweet was classified into, sentiment as given by Vader and TextBlob, and number of positive and negative words from the OpinionFinder, Liu-Hu, and Lexicoder dictionaries.
 
-'ResultsFigures.R' requires the following packages to be installed in R: xts, ggplot2, readr, GGally, data.table, fields, plotly.
+'ResultsFigures.R' requires the following packages to be installed in R: xts, ggplot2, readr, GGally, data.table, fields, plotly, htmlwidgets.
 
 ## Shiny App
-We also include a Shiny app. Using this Shiny app, various parameters can be manipulated to see how the resulting relationships between consumer confidence and sentiment of "jobs" tweets changes.
+We also include a Shiny app. Using this Shiny app, various parameters can be manipulated to see how the resulting relationships between consumer confidence and sentiment of "jobs" tweets changes. Tables 4 and 6 can be replicated using the Shiny App.
 
 The shiny app makes use of two data sets: 'allDataSurvey.csv' and 'dailyTwitter.csv'.
 
