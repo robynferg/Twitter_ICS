@@ -372,7 +372,7 @@ for(l in ls){
     # add to matrix
     kl_sensitivity[which(ks==k),which(ls==l)] = corr
   }
-  print(l)
+  #print(l)
 }
 
 fig2 = plot_ly(type='contour', z=kl_sensitivity, x=ls, y=ks, contours=list(showlabels=TRUE), colors=colorRamp(c('white', 'gray30'))) %>%
