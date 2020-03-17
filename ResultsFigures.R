@@ -350,6 +350,403 @@ print(tables5[tables5$method==2,])
 print(tables5[tables5$method==3,])
 
 
+### Collective vs. Self question
+## Collective Question
+table6 = data.frame('category'='all', 'yr08'=NA, 'yr09'=NA, 'yr10'=NA, 'yr11'=NA, 'yr12'=NA, 'yr13'=NA, 'yr14'=NA)
+
+twittermerged_all_coll = merge(dailytwitter_all.xts, dailySurvey.xts$BUS12)
+twittermerged_all_lag_coll = lLag(twittermerged_all_coll, -50, c('BUS12'))
+twittermerged_all_lag_smooth_coll = kSmooth(twittermerged_all_lag_coll, 30)
+
+table6$yr08 = with(twittermerged_all_lag_smooth_coll[index(twittermerged_all_lag_smooth_coll) %in% as.Date('2008-01-01'):as.Date('2008-12-31'),], 
+     round(cor(BUS12, M1_w_LC), 2))
+table6$yr09 = with(twittermerged_all_lag_smooth_coll[index(twittermerged_all_lag_smooth_coll) %in% as.Date('2009-01-01'):as.Date('2009-12-31'),], 
+     round(cor(BUS12, M1_w_LC), 2))
+table6$yr10 = with(twittermerged_all_lag_smooth_coll[index(twittermerged_all_lag_smooth_coll) %in% as.Date('2010-01-01'):as.Date('2010-12-31'),], 
+                   round(cor(BUS12, M1_w_LC), 2))
+table6$yr11 = with(twittermerged_all_lag_smooth_coll[index(twittermerged_all_lag_smooth_coll) %in% as.Date('2011-01-01'):as.Date('2011-12-31'),], 
+                   round(cor(BUS12, M1_w_LC), 2))
+table6$yr12 = with(twittermerged_all_lag_smooth_coll[index(twittermerged_all_lag_smooth_coll) %in% as.Date('2012-01-01'):as.Date('2012-12-31'),], 
+                   round(cor(BUS12, M1_w_LC), 2))
+table6$yr13 = with(twittermerged_all_lag_smooth_coll[index(twittermerged_all_lag_smooth_coll) %in% as.Date('2013-01-01'):as.Date('2013-12-31'),], 
+                   round(cor(BUS12, M1_w_LC), 2))
+table6$yr14 = with(twittermerged_all_lag_smooth_coll[index(twittermerged_all_lag_smooth_coll) %in% as.Date('2014-01-01'):as.Date('2014-06-27'),], 
+                   round(cor(BUS12, M1_w_LC), 2))
+
+twittermerged_np_coll = merge(dailytwitter_np.xts, dailySurvey.xts$BUS12)
+twittermerged_np_lag_coll = lLag(twittermerged_np_coll, -50, c('BUS12'))
+twittermerged_np_lag_smooth_coll = kSmooth(twittermerged_np_lag_coll, 30)
+
+newrow = data.frame('category'='np', 'yr08'=NA, 'yr09'=NA, 'yr10'=NA, 'yr11'=NA, 'yr12'=NA, 'yr13'=NA, 'yr14'=NA)
+
+newrow$yr08 = with(twittermerged_np_lag_smooth_coll[index(twittermerged_np_lag_smooth_coll) %in% as.Date('2008-01-01'):as.Date('2008-12-31'),], 
+                   round(cor(BUS12, M1_w_LC), 2))
+newrow$yr09 = with(twittermerged_np_lag_smooth_coll[index(twittermerged_np_lag_smooth_coll) %in% as.Date('2009-01-01'):as.Date('2009-12-31'),], 
+                   round(cor(BUS12, M1_w_LC), 2))
+newrow$yr10 = with(twittermerged_np_lag_smooth_coll[index(twittermerged_np_lag_smooth_coll) %in% as.Date('2010-01-01'):as.Date('2010-12-31'),], 
+                   round(cor(BUS12, M1_w_LC), 2))
+newrow$yr11 = with(twittermerged_np_lag_smooth_coll[index(twittermerged_np_lag_smooth_coll) %in% as.Date('2011-01-01'):as.Date('2011-12-31'),], 
+                   round(cor(BUS12, M1_w_LC), 2))
+newrow$yr12 = with(twittermerged_np_lag_smooth_coll[index(twittermerged_np_lag_smooth_coll) %in% as.Date('2012-01-01'):as.Date('2012-12-31'),], 
+                   round(cor(BUS12, M1_w_LC), 2))
+newrow$yr13 = with(twittermerged_np_lag_smooth_coll[index(twittermerged_np_lag_smooth_coll) %in% as.Date('2013-01-01'):as.Date('2013-12-31'),], 
+                   round(cor(BUS12, M1_w_LC), 2))
+newrow$yr14 = with(twittermerged_np_lag_smooth_coll[index(twittermerged_np_lag_smooth_coll) %in% as.Date('2014-01-01'):as.Date('2014-06-27'),], 
+                   round(cor(BUS12, M1_w_LC), 2))
+table6 = rbind(table6, newrow)
+
+twittermerged_pers_coll = merge(dailytwitter_pers.xts, dailySurvey.xts$BUS12)
+twittermerged_pers_lag_coll = lLag(twittermerged_pers_coll, -50, c('BUS12'))
+twittermerged_pers_lag_smooth_coll = kSmooth(twittermerged_pers_lag_coll, 30)
+
+newrow = data.frame('category'='pers', 'yr08'=NA, 'yr09'=NA, 'yr10'=NA, 'yr11'=NA, 'yr12'=NA, 'yr13'=NA, 'yr14'=NA)
+
+newrow$yr08 = with(twittermerged_pers_lag_smooth_coll[index(twittermerged_pers_lag_smooth_coll) %in% as.Date('2008-01-01'):as.Date('2008-12-31'),], 
+                   round(cor(BUS12, M1_w_LC), 2))
+newrow$yr09 = with(twittermerged_pers_lag_smooth_coll[index(twittermerged_pers_lag_smooth_coll) %in% as.Date('2009-01-01'):as.Date('2009-12-31'),], 
+                   round(cor(BUS12, M1_w_LC), 2))
+newrow$yr10 = with(twittermerged_pers_lag_smooth_coll[index(twittermerged_pers_lag_smooth_coll) %in% as.Date('2010-01-01'):as.Date('2010-12-31'),], 
+                   round(cor(BUS12, M1_w_LC), 2))
+newrow$yr11 = with(twittermerged_pers_lag_smooth_coll[index(twittermerged_pers_lag_smooth_coll) %in% as.Date('2011-01-01'):as.Date('2011-12-31'),], 
+                   round(cor(BUS12, M1_w_LC), 2))
+newrow$yr12 = with(twittermerged_pers_lag_smooth_coll[index(twittermerged_pers_lag_smooth_coll) %in% as.Date('2012-01-01'):as.Date('2012-12-31'),], 
+                   round(cor(BUS12, M1_w_LC), 2))
+newrow$yr13 = with(twittermerged_pers_lag_smooth_coll[index(twittermerged_pers_lag_smooth_coll) %in% as.Date('2013-01-01'):as.Date('2013-12-31'),], 
+                   round(cor(BUS12, M1_w_LC), 2))
+newrow$yr14 = with(twittermerged_pers_lag_smooth_coll[index(twittermerged_pers_lag_smooth_coll) %in% as.Date('2014-01-01'):as.Date('2014-06-27'),], 
+                   round(cor(BUS12, M1_w_LC), 2))
+table6 = rbind(table6, newrow)
+
+twittermerged_ads_coll = merge(dailytwitter_ads.xts, dailySurvey.xts$BUS12)
+twittermerged_ads_lag_coll = lLag(twittermerged_ads_coll, -50, c('BUS12'))
+twittermerged_ads_lag_smooth_coll = kSmooth(twittermerged_ads_lag_coll, 30)
+
+newrow = data.frame('category'='ads', 'yr08'=NA, 'yr09'=NA, 'yr10'=NA, 'yr11'=NA, 'yr12'=NA, 'yr13'=NA, 'yr14'=NA)
+
+newrow$yr08 = with(twittermerged_ads_lag_smooth_coll[index(twittermerged_ads_lag_smooth_coll) %in% as.Date('2008-01-01'):as.Date('2008-12-31'),], 
+                   round(cor(BUS12, M1_w_LC, use='pairwise.complete'), 2))
+newrow$yr09 = with(twittermerged_ads_lag_smooth_coll[index(twittermerged_ads_lag_smooth_coll) %in% as.Date('2009-01-01'):as.Date('2009-12-31'),], 
+                   round(cor(BUS12, M1_w_LC), 2))
+newrow$yr10 = with(twittermerged_ads_lag_smooth_coll[index(twittermerged_ads_lag_smooth_coll) %in% as.Date('2010-01-01'):as.Date('2010-12-31'),], 
+                   round(cor(BUS12, M1_w_LC), 2))
+newrow$yr11 = with(twittermerged_ads_lag_smooth_coll[index(twittermerged_ads_lag_smooth_coll) %in% as.Date('2011-01-01'):as.Date('2011-12-31'),], 
+                   round(cor(BUS12, M1_w_LC), 2))
+newrow$yr12 = with(twittermerged_ads_lag_smooth_coll[index(twittermerged_ads_lag_smooth_coll) %in% as.Date('2012-01-01'):as.Date('2012-12-31'),], 
+                   round(cor(BUS12, M1_w_LC), 2))
+newrow$yr13 = with(twittermerged_ads_lag_smooth_coll[index(twittermerged_ads_lag_smooth_coll) %in% as.Date('2013-01-01'):as.Date('2013-12-31'),], 
+                   round(cor(BUS12, M1_w_LC), 2))
+newrow$yr14 = with(twittermerged_ads_lag_smooth_coll[index(twittermerged_ads_lag_smooth_coll) %in% as.Date('2014-01-01'):as.Date('2014-06-27'),], 
+                   round(cor(BUS12, M1_w_LC), 2))
+table6 = rbind(table6, newrow)
+
+twittermerged_junk_coll = merge(dailytwitter_junk.xts, dailySurvey.xts$BUS12)
+twittermerged_junk_lag_coll = lLag(twittermerged_junk_coll, -50, c('BUS12'))
+twittermerged_junk_lag_smooth_coll = kSmooth(twittermerged_junk_lag_coll, 30)
+
+newrow = data.frame('category'='junk', 'yr08'=NA, 'yr09'=NA, 'yr10'=NA, 'yr11'=NA, 'yr12'=NA, 'yr13'=NA, 'yr14'=NA)
+
+newrow$yr08 = with(twittermerged_junk_lag_smooth_coll[index(twittermerged_junk_lag_smooth_coll) %in% as.Date('2008-01-01'):as.Date('2008-12-31'),], 
+                   round(cor(BUS12, M1_w_LC), 2))
+newrow$yr09 = with(twittermerged_junk_lag_smooth_coll[index(twittermerged_junk_lag_smooth_coll) %in% as.Date('2009-01-01'):as.Date('2009-12-31'),], 
+                   round(cor(BUS12, M1_w_LC), 2))
+newrow$yr10 = with(twittermerged_junk_lag_smooth_coll[index(twittermerged_junk_lag_smooth_coll) %in% as.Date('2010-01-01'):as.Date('2010-12-31'),], 
+                   round(cor(BUS12, M1_w_LC), 2))
+newrow$yr11 = with(twittermerged_junk_lag_smooth_coll[index(twittermerged_junk_lag_smooth_coll) %in% as.Date('2011-01-01'):as.Date('2011-12-31'),], 
+                   round(cor(BUS12, M1_w_LC), 2))
+newrow$yr12 = with(twittermerged_junk_lag_smooth_coll[index(twittermerged_junk_lag_smooth_coll) %in% as.Date('2012-01-01'):as.Date('2012-12-31'),], 
+                   round(cor(BUS12, M1_w_LC), 2))
+newrow$yr13 = with(twittermerged_junk_lag_smooth_coll[index(twittermerged_junk_lag_smooth_coll) %in% as.Date('2013-01-01'):as.Date('2013-12-31'),], 
+                   round(cor(BUS12, M1_w_LC), 2))
+newrow$yr14 = with(twittermerged_junk_lag_smooth_coll[index(twittermerged_junk_lag_smooth_coll) %in% as.Date('2014-01-01'):as.Date('2014-06-27'),], 
+                   round(cor(BUS12, M1_w_LC), 2))
+table6 = rbind(table6, newrow)
+
+twittermerged_other_coll = merge(dailytwitter_other.xts, dailySurvey.xts$BUS12)
+twittermerged_other_lag_coll = lLag(twittermerged_other_coll, -50, c('BUS12'))
+twittermerged_other_lag_smooth_coll = kSmooth(twittermerged_other_lag_coll, 30)
+
+newrow = data.frame('category'='other', 'yr08'=NA, 'yr09'=NA, 'yr10'=NA, 'yr11'=NA, 'yr12'=NA, 'yr13'=NA, 'yr14'=NA)
+
+newrow$yr08 = with(twittermerged_other_lag_smooth_coll[index(twittermerged_other_lag_smooth_coll) %in% as.Date('2008-01-01'):as.Date('2008-12-31'),], 
+                   round(cor(BUS12, M1_w_LC), 2))
+newrow$yr09 = with(twittermerged_other_lag_smooth_coll[index(twittermerged_other_lag_smooth_coll) %in% as.Date('2009-01-01'):as.Date('2009-12-31'),], 
+                   round(cor(BUS12, M1_w_LC), 2))
+newrow$yr10 = with(twittermerged_other_lag_smooth_coll[index(twittermerged_other_lag_smooth_coll) %in% as.Date('2010-01-01'):as.Date('2010-12-31'),], 
+                   round(cor(BUS12, M1_w_LC), 2))
+newrow$yr11 = with(twittermerged_other_lag_smooth_coll[index(twittermerged_other_lag_smooth_coll) %in% as.Date('2011-01-01'):as.Date('2011-12-31'),], 
+                   round(cor(BUS12, M1_w_LC), 2))
+newrow$yr12 = with(twittermerged_other_lag_smooth_coll[index(twittermerged_other_lag_smooth_coll) %in% as.Date('2012-01-01'):as.Date('2012-12-31'),], 
+                   round(cor(BUS12, M1_w_LC), 2))
+newrow$yr13 = with(twittermerged_other_lag_smooth_coll[index(twittermerged_other_lag_smooth_coll) %in% as.Date('2013-01-01'):as.Date('2013-12-31'),], 
+                   round(cor(BUS12, M1_w_LC), 2))
+newrow$yr14 = with(twittermerged_other_lag_smooth_coll[index(twittermerged_other_lag_smooth_coll) %in% as.Date('2014-01-01'):as.Date('2014-06-27'),], 
+                   round(cor(BUS12, M1_w_LC), 2))
+table6 = rbind(table6, newrow)
+
+
+## Personal Question
+table6b = data.frame('category'='all', 'yr08'=NA, 'yr09'=NA, 'yr10'=NA, 'yr11'=NA, 'yr12'=NA, 'yr13'=NA, 'yr14'=NA)
+
+twittermerged_all_pers = merge(dailytwitter_all.xts, dailySurvey.xts$PEXP)
+twittermerged_all_lag_pers = lLag(twittermerged_all_pers, -50, c('PEXP'))
+twittermerged_all_lag_smooth_pers = kSmooth(twittermerged_all_lag_pers, 30)
+
+table6b$yr08 = with(twittermerged_all_lag_smooth_pers[index(twittermerged_all_lag_smooth_pers) %in% as.Date('2008-01-01'):as.Date('2008-12-31'),], 
+                   round(cor(PEXP, M1_w_LC), 2))
+table6b$yr09 = with(twittermerged_all_lag_smooth_pers[index(twittermerged_all_lag_smooth_pers) %in% as.Date('2009-01-01'):as.Date('2009-12-31'),], 
+                   round(cor(PEXP, M1_w_LC), 2))
+table6b$yr10 = with(twittermerged_all_lag_smooth_pers[index(twittermerged_all_lag_smooth_pers) %in% as.Date('2010-01-01'):as.Date('2010-12-31'),], 
+                   round(cor(PEXP, M1_w_LC), 2))
+table6b$yr11 = with(twittermerged_all_lag_smooth_pers[index(twittermerged_all_lag_smooth_pers) %in% as.Date('2011-01-01'):as.Date('2011-12-31'),], 
+                   round(cor(PEXP, M1_w_LC), 2))
+table6b$yr12 = with(twittermerged_all_lag_smooth_pers[index(twittermerged_all_lag_smooth_pers) %in% as.Date('2012-01-01'):as.Date('2012-12-31'),], 
+                   round(cor(PEXP, M1_w_LC), 2))
+table6b$yr13 = with(twittermerged_all_lag_smooth_pers[index(twittermerged_all_lag_smooth_pers) %in% as.Date('2013-01-01'):as.Date('2013-12-31'),], 
+                   round(cor(PEXP, M1_w_LC), 2))
+table6b$yr14 = with(twittermerged_all_lag_smooth_pers[index(twittermerged_all_lag_smooth_pers) %in% as.Date('2014-01-01'):as.Date('2014-06-27'),], 
+                   round(cor(PEXP, M1_w_LC), 2))
+
+twittermerged_np_pers = merge(dailytwitter_np.xts, dailySurvey.xts$PEXP)
+twittermerged_np_lag_pers = lLag(twittermerged_np_pers, -50, c('PEXP'))
+twittermerged_np_lag_smooth_pers = kSmooth(twittermerged_np_lag_pers, 30)
+
+newrow = data.frame('category'='np', 'yr08'=NA, 'yr09'=NA, 'yr10'=NA, 'yr11'=NA, 'yr12'=NA, 'yr13'=NA, 'yr14'=NA)
+
+newrow$yr08 = with(twittermerged_np_lag_smooth_pers[index(twittermerged_np_lag_smooth_pers) %in% as.Date('2008-01-01'):as.Date('2008-12-31'),], 
+                   round(cor(PEXP, M1_w_LC), 2))
+newrow$yr09 = with(twittermerged_np_lag_smooth_pers[index(twittermerged_np_lag_smooth_pers) %in% as.Date('2009-01-01'):as.Date('2009-12-31'),], 
+                   round(cor(PEXP, M1_w_LC), 2))
+newrow$yr10 = with(twittermerged_np_lag_smooth_pers[index(twittermerged_np_lag_smooth_pers) %in% as.Date('2010-01-01'):as.Date('2010-12-31'),], 
+                   round(cor(PEXP, M1_w_LC), 2))
+newrow$yr11 = with(twittermerged_np_lag_smooth_pers[index(twittermerged_np_lag_smooth_pers) %in% as.Date('2011-01-01'):as.Date('2011-12-31'),], 
+                   round(cor(PEXP, M1_w_LC), 2))
+newrow$yr12 = with(twittermerged_np_lag_smooth_pers[index(twittermerged_np_lag_smooth_pers) %in% as.Date('2012-01-01'):as.Date('2012-12-31'),], 
+                   round(cor(PEXP, M1_w_LC), 2))
+newrow$yr13 = with(twittermerged_np_lag_smooth_pers[index(twittermerged_np_lag_smooth_pers) %in% as.Date('2013-01-01'):as.Date('2013-12-31'),], 
+                   round(cor(PEXP, M1_w_LC), 2))
+newrow$yr14 = with(twittermerged_np_lag_smooth_pers[index(twittermerged_np_lag_smooth_pers) %in% as.Date('2014-01-01'):as.Date('2014-06-27'),], 
+                   round(cor(PEXP, M1_w_LC), 2))
+table6b = rbind(table6b, newrow)
+
+twittermerged_pers_pers = merge(dailytwitter_pers.xts, dailySurvey.xts$PEXP)
+twittermerged_pers_lag_pers = lLag(twittermerged_pers_pers, -50, c('PEXP'))
+twittermerged_pers_lag_smooth_pers = kSmooth(twittermerged_pers_lag_pers, 30)
+
+newrow = data.frame('category'='pers', 'yr08'=NA, 'yr09'=NA, 'yr10'=NA, 'yr11'=NA, 'yr12'=NA, 'yr13'=NA, 'yr14'=NA)
+
+newrow$yr08 = with(twittermerged_pers_lag_smooth_pers[index(twittermerged_pers_lag_smooth_pers) %in% as.Date('2008-01-01'):as.Date('2008-12-31'),], 
+                   round(cor(PEXP, M1_w_LC), 2))
+newrow$yr09 = with(twittermerged_pers_lag_smooth_pers[index(twittermerged_pers_lag_smooth_pers) %in% as.Date('2009-01-01'):as.Date('2009-12-31'),], 
+                   round(cor(PEXP, M1_w_LC), 2))
+newrow$yr10 = with(twittermerged_pers_lag_smooth_pers[index(twittermerged_pers_lag_smooth_pers) %in% as.Date('2010-01-01'):as.Date('2010-12-31'),], 
+                   round(cor(PEXP, M1_w_LC), 2))
+newrow$yr11 = with(twittermerged_pers_lag_smooth_pers[index(twittermerged_pers_lag_smooth_pers) %in% as.Date('2011-01-01'):as.Date('2011-12-31'),], 
+                   round(cor(PEXP, M1_w_LC), 2))
+newrow$yr12 = with(twittermerged_pers_lag_smooth_pers[index(twittermerged_pers_lag_smooth_pers) %in% as.Date('2012-01-01'):as.Date('2012-12-31'),], 
+                   round(cor(PEXP, M1_w_LC), 2))
+newrow$yr13 = with(twittermerged_pers_lag_smooth_pers[index(twittermerged_pers_lag_smooth_pers) %in% as.Date('2013-01-01'):as.Date('2013-12-31'),], 
+                   round(cor(PEXP, M1_w_LC), 2))
+newrow$yr14 = with(twittermerged_pers_lag_smooth_pers[index(twittermerged_pers_lag_smooth_pers) %in% as.Date('2014-01-01'):as.Date('2014-06-27'),], 
+                   round(cor(PEXP, M1_w_LC), 2))
+table6b = rbind(table6b, newrow)
+
+twittermerged_ads_pers = merge(dailytwitter_ads.xts, dailySurvey.xts$PEXP)
+twittermerged_ads_lag_pers = lLag(twittermerged_ads_pers, -50, c('PEXP'))
+twittermerged_ads_lag_smooth_pers = kSmooth(twittermerged_ads_lag_pers, 30)
+
+newrow = data.frame('category'='ads', 'yr08'=NA, 'yr09'=NA, 'yr10'=NA, 'yr11'=NA, 'yr12'=NA, 'yr13'=NA, 'yr14'=NA)
+
+newrow$yr08 = with(twittermerged_ads_lag_smooth_pers[index(twittermerged_ads_lag_smooth_pers) %in% as.Date('2008-01-01'):as.Date('2008-12-31'),], 
+                   round(cor(PEXP, M1_w_LC, use='pairwise.complete'), 2))
+newrow$yr09 = with(twittermerged_ads_lag_smooth_pers[index(twittermerged_ads_lag_smooth_pers) %in% as.Date('2009-01-01'):as.Date('2009-12-31'),], 
+                   round(cor(PEXP, M1_w_LC), 2))
+newrow$yr10 = with(twittermerged_ads_lag_smooth_pers[index(twittermerged_ads_lag_smooth_pers) %in% as.Date('2010-01-01'):as.Date('2010-12-31'),], 
+                   round(cor(PEXP, M1_w_LC), 2))
+newrow$yr11 = with(twittermerged_ads_lag_smooth_pers[index(twittermerged_ads_lag_smooth_pers) %in% as.Date('2011-01-01'):as.Date('2011-12-31'),], 
+                   round(cor(PEXP, M1_w_LC), 2))
+newrow$yr12 = with(twittermerged_ads_lag_smooth_pers[index(twittermerged_ads_lag_smooth_pers) %in% as.Date('2012-01-01'):as.Date('2012-12-31'),], 
+                   round(cor(PEXP, M1_w_LC), 2))
+newrow$yr13 = with(twittermerged_ads_lag_smooth_pers[index(twittermerged_ads_lag_smooth_pers) %in% as.Date('2013-01-01'):as.Date('2013-12-31'),], 
+                   round(cor(PEXP, M1_w_LC), 2))
+newrow$yr14 = with(twittermerged_ads_lag_smooth_pers[index(twittermerged_ads_lag_smooth_pers) %in% as.Date('2014-01-01'):as.Date('2014-06-27'),], 
+                   round(cor(PEXP, M1_w_LC), 2))
+table6b = rbind(table6b, newrow)
+
+twittermerged_junk_pers = merge(dailytwitter_junk.xts, dailySurvey.xts$PEXP)
+twittermerged_junk_lag_pers = lLag(twittermerged_junk_pers, -50, c('PEXP'))
+twittermerged_junk_lag_smooth_pers = kSmooth(twittermerged_junk_lag_pers, 30)
+
+newrow = data.frame('category'='junk', 'yr08'=NA, 'yr09'=NA, 'yr10'=NA, 'yr11'=NA, 'yr12'=NA, 'yr13'=NA, 'yr14'=NA)
+
+newrow$yr08 = with(twittermerged_junk_lag_smooth_pers[index(twittermerged_junk_lag_smooth_pers) %in% as.Date('2008-01-01'):as.Date('2008-12-31'),], 
+                   round(cor(PEXP, M1_w_LC), 2))
+newrow$yr09 = with(twittermerged_junk_lag_smooth_pers[index(twittermerged_junk_lag_smooth_pers) %in% as.Date('2009-01-01'):as.Date('2009-12-31'),], 
+                   round(cor(PEXP, M1_w_LC), 2))
+newrow$yr10 = with(twittermerged_junk_lag_smooth_pers[index(twittermerged_junk_lag_smooth_pers) %in% as.Date('2010-01-01'):as.Date('2010-12-31'),], 
+                   round(cor(PEXP, M1_w_LC), 2))
+newrow$yr11 = with(twittermerged_junk_lag_smooth_pers[index(twittermerged_junk_lag_smooth_pers) %in% as.Date('2011-01-01'):as.Date('2011-12-31'),], 
+                   round(cor(PEXP, M1_w_LC), 2))
+newrow$yr12 = with(twittermerged_junk_lag_smooth_pers[index(twittermerged_junk_lag_smooth_pers) %in% as.Date('2012-01-01'):as.Date('2012-12-31'),], 
+                   round(cor(PEXP, M1_w_LC), 2))
+newrow$yr13 = with(twittermerged_junk_lag_smooth_pers[index(twittermerged_junk_lag_smooth_pers) %in% as.Date('2013-01-01'):as.Date('2013-12-31'),], 
+                   round(cor(PEXP, M1_w_LC), 2))
+newrow$yr14 = with(twittermerged_junk_lag_smooth_pers[index(twittermerged_junk_lag_smooth_pers) %in% as.Date('2014-01-01'):as.Date('2014-06-27'),], 
+                   round(cor(PEXP, M1_w_LC), 2))
+table6b = rbind(table6b, newrow)
+
+twittermerged_other_pers = merge(dailytwitter_other.xts, dailySurvey.xts$PEXP)
+twittermerged_other_lag_pers = lLag(twittermerged_other_pers, -50, c('PEXP'))
+twittermerged_other_lag_smooth_pers = kSmooth(twittermerged_other_lag_pers, 30)
+
+newrow = data.frame('category'='other', 'yr08'=NA, 'yr09'=NA, 'yr10'=NA, 'yr11'=NA, 'yr12'=NA, 'yr13'=NA, 'yr14'=NA)
+
+newrow$yr08 = with(twittermerged_other_lag_smooth_pers[index(twittermerged_other_lag_smooth_pers) %in% as.Date('2008-01-01'):as.Date('2008-12-31'),], 
+                   round(cor(PEXP, M1_w_LC), 2))
+newrow$yr09 = with(twittermerged_other_lag_smooth_pers[index(twittermerged_other_lag_smooth_pers) %in% as.Date('2009-01-01'):as.Date('2009-12-31'),], 
+                   round(cor(PEXP, M1_w_LC), 2))
+newrow$yr10 = with(twittermerged_other_lag_smooth_pers[index(twittermerged_other_lag_smooth_pers) %in% as.Date('2010-01-01'):as.Date('2010-12-31'),], 
+                   round(cor(PEXP, M1_w_LC), 2))
+newrow$yr11 = with(twittermerged_other_lag_smooth_pers[index(twittermerged_other_lag_smooth_pers) %in% as.Date('2011-01-01'):as.Date('2011-12-31'),], 
+                   round(cor(PEXP, M1_w_LC), 2))
+newrow$yr12 = with(twittermerged_other_lag_smooth_pers[index(twittermerged_other_lag_smooth_pers) %in% as.Date('2012-01-01'):as.Date('2012-12-31'),], 
+                   round(cor(PEXP, M1_w_LC), 2))
+newrow$yr13 = with(twittermerged_other_lag_smooth_pers[index(twittermerged_other_lag_smooth_pers) %in% as.Date('2013-01-01'):as.Date('2013-12-31'),], 
+                   round(cor(PEXP, M1_w_LC), 2))
+newrow$yr14 = with(twittermerged_other_lag_smooth_pers[index(twittermerged_other_lag_smooth_pers) %in% as.Date('2014-01-01'):as.Date('2014-06-27'),], 
+                   round(cor(PEXP, M1_w_LC), 2))
+table6b = rbind(table6b, newrow)
+
+print('Table 6')
+print(table6)
+print(table6b)
+
+
+### Comovement
+scor = function(x, y){
+  # x, y vectors
+  # output percent of time x and y move in the same direction
+  xChanges = x[-1] - x[-length(x)]
+  yChanges = y[-1] - y[-length(y)]
+  return(sum(sign(xChanges)==sign(yChanges), na.rm=TRUE) / sum(is.na(sign(xChanges)==sign(yChanges))==FALSE))
+}
+
+table4 = data.frame('cat'=c('all', 'np', 'pers', 'ads', 'junk', 'other'), 'daily'=NA)
+# daily
+com_daily_all = twittermerged_all_lag[index(twittermerged_all_lag) %in% as.Date('2008-01-01'):as.Date('2009-12-31'), c("ICS","M1")]
+table4$daily[1] = round(scor(as.vector(com_daily_all$ICS), as.vector(com_daily_all$M1)), 2)
+
+com_daily_np = twittermerged_np_lag[index(twittermerged_np_lag) %in% as.Date('2008-01-01'):as.Date('2009-12-31'), c("ICS","M1")]
+table4$daily[2] = round(scor(as.vector(com_daily_np$ICS), as.vector(com_daily_np$M1)), 2)
+
+com_daily_pers = twittermerged_pers_lag[index(twittermerged_pers_lag) %in% as.Date('2008-01-01'):as.Date('2009-12-31'), c("ICS","M1")]
+table4$daily[3] = round(scor(as.vector(com_daily_pers$ICS), as.vector(com_daily_pers$M1)), 2)
+
+com_daily_ads = twittermerged_ads_lag[index(twittermerged_ads_lag) %in% as.Date('2008-01-01'):as.Date('2009-12-31'), c("ICS","M1")]
+table4$daily[4] = round(scor(as.vector(com_daily_ads$ICS), as.vector(com_daily_ads$M1)), 2)
+
+com_daily_junk = twittermerged_junk_lag[index(twittermerged_junk_lag) %in% as.Date('2008-01-01'):as.Date('2009-12-31'), c("ICS","M1")]
+table4$daily[5] = round(scor(as.vector(com_daily_junk$ICS), as.vector(com_daily_junk$M1)), 2)
+
+com_daily_other = twittermerged_other_lag[index(twittermerged_other_lag) %in% as.Date('2008-01-01'):as.Date('2009-12-31'), c("ICS","M1")]
+table4$daily[6] = round(scor(as.vector(com_daily_other$ICS), as.vector(com_daily_other$M1)), 2)
+
+# weekly
+weekComFcn = function(dat){
+  weekSmooth = kSmooth(dat, 7) # smooth 7 days
+  dayOfWeek = weekdays(as.Date('2017-01-01')) # find weekday of interest
+  weekSmooth = weekSmooth[which(weekdays(index(weekSmooth))==dayOfWeek),] # restrict to days that match the weekday of interest
+  newData = data.frame(weekSmooth)
+  return(round(scor(as.vector(newData$ICS), as.vector(newData$M1)), 2))
+}
+
+table4$week = NA
+table4$week[1] = weekComFcn(com_daily_all)
+table4$week[2] = weekComFcn(com_daily_np)
+table4$week[3] = weekComFcn(com_daily_pers)
+table4$week[4] = weekComFcn(com_daily_ads)
+table4$week[5] = weekComFcn(com_daily_junk)
+table4$week[6] = weekComFcn(com_daily_other)
+
+# monthly
+  # 1st
+addMonth = function(date){
+  return(date %m+% months(1))
+}
+subtractMonth = function(date){
+  return(date %m-% months(1))
+}
+relevantDays = function(date, beginDate, endDate){
+  # gets all month days from beingDate to endDate
+  days = c()
+  day = date
+  if(day >=beginDate & day <=endDate) days = c(days, day)
+  # get all days from beginDate to date
+  while(day > beginDate){
+    day = subtractMonth(day)
+    if(day >= beginDate & day <= endDate){
+      days = c(days, day)
+    }
+  }
+  # get all days from date to endDate
+  day = date
+  while(day < endDate){
+    day = addMonth(day) 
+    if(day >=beginDate & day <= endDate){
+      days = c(days, day)
+    }
+  }
+  return(as.Date(days)[order(as.Date(days))])
+}
+
+monthDays1 = relevantDays(as.Date('2017-01-01'), as.Date('2008-01-01'), as.Date('2009-12-31'))
+monthDays1 = c(monthDays1, as.Date(addMonth(monthDays1[length(monthDays1)])))
+
+monthlyComFcn = function(dat, monthDays){
+  newData = data.frame(dat[1,])
+  for(i in 1:(length(monthDays)-1)){
+    day = as.Date(monthDays[i])
+    temp = dat[index(dat)>=day & index(dat)<as.Date(monthDays[i+1]),]
+    newData = rbind(newData, colSums(temp, na.rm=TRUE)/nrow(temp))
+  }
+  newData = newData[-1,]
+  return(round(scor(as.vector(newData$ICS), as.vector(newData$M1)), 2))
+}
+
+table4$month1 = NA
+table4$month1[1] = monthlyComFcn(com_daily_all, monthDays1)
+table4$month1[2] = monthlyComFcn(com_daily_np, monthDays1)
+table4$month1[3] = monthlyComFcn(com_daily_pers, monthDays1)
+table4$month1[4] = monthlyComFcn(com_daily_ads, monthDays1)
+table4$month1[5] = monthlyComFcn(com_daily_junk, monthDays1)
+table4$month1[6] = monthlyComFcn(com_daily_other, monthDays1)
+
+# monthly-2nd
+monthDays2 = relevantDays(as.Date('2017-01-02'), as.Date('2008-01-01'), as.Date('2009-12-31'))
+monthDays2 = c(monthDays2, as.Date(addMonth(monthDays2[length(monthDays2)])))
+
+table4$month2 = NA
+table4$month2[1] = monthlyComFcn(com_daily_all, monthDays2)
+table4$month2[2] = monthlyComFcn(com_daily_np, monthDays2)
+table4$month2[3] = monthlyComFcn(com_daily_pers, monthDays2)
+table4$month2[4] = monthlyComFcn(com_daily_ads, monthDays2)
+table4$month2[5] = monthlyComFcn(com_daily_junk, monthDays2)
+table4$month2[6] = monthlyComFcn(com_daily_other, monthDays2)
+
+# monthly-4th
+monthDays4 = relevantDays(as.Date('2017-01-04'), as.Date('2008-01-01'), as.Date('2009-12-31'))
+monthDays4 = c(monthDays4, as.Date(addMonth(monthDays4[length(monthDays4)])))
+
+table4$month4 = NA
+table4$month4[1] = monthlyComFcn(com_daily_all, monthDays4)
+table4$month4[2] = monthlyComFcn(com_daily_np, monthDays4)
+table4$month4[3] = monthlyComFcn(com_daily_pers, monthDays4)
+table4$month4[4] = monthlyComFcn(com_daily_ads, monthDays4)
+table4$month4[5] = monthlyComFcn(com_daily_junk, monthDays4)
+table4$month4[6] = monthlyComFcn(com_daily_other, monthDays4)
+
+print('Table 4')
+print(table4)
+
 ## sensitivity analysis to smoothing and lag
 ks = 1:100
 ls = -100:100
@@ -380,6 +777,7 @@ fig2 = plot_ly(type='contour', z=kl_sensitivity, x=ls, y=ks, contours=list(showl
 htmlwidgets::saveWidget(as_widget(fig2), 'fig2.html')
 
 plot_ly(type='contour', z=kl_sensitivity, x=ls, y=ks, contours=list(showlabels=TRUE))
+
 
 
 ##### Correlation matrix for various senitment methods
