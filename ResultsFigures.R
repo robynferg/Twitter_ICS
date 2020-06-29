@@ -8,6 +8,7 @@ library(data.table)
 library(fields)
 library(plotly)
 library(htmlwidgets)
+library(lubridate)
 
 ########## Functions
 ## Smoothing
